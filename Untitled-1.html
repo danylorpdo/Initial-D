@@ -1,0 +1,606 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Experimente o mundo emocionante das corridas de montanha com Initial D.">
+    <title>Initial D</title>
+    <link href="https://fonts.cdnfonts.com/css/eurostile" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Eurostile', sans-serif;
+            background-color: #000;
+            color: #f1f1f1;
+            overflow-x: hidden;
+        }
+
+        .home-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+        }
+
+       
+
+        .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://i0.wp.com/anmtv.com.br/wp-content/uploads/2023/10/IMG_20231020_133051.jpg?resize=800%2C400&ssl=1') center/cover no-repeat;
+    filter: blur(8px); /* Efeito de desfoque */
+    z-index: 1;
+    transform: scale(1.1); /* Aumenta ligeiramente a imagem para compensar o desfoque */
+    
+}
+
+        .background-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            filter: blur(8px);
+        }
+
+        .home2-section {
+    position: relative;
+    min-height: 100vh; /* Certifique-se de que preenche toda a altura da visualização */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+
+.background2-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://i0.wp.com/anmtv.com.br/wp-content/uploads/2023/10/IMG_20231020_133051.jpg?resize=800%2C400&ssl=1') center/cover no-repeat;
+    filter: blur(8px); /* Efeito de desfoque */
+    z-index: 1;
+}
+.background2-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Sobreposição escura */
+    z-index: 2;
+}
+
+
+
+
+
+
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .hero-content h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+        }
+
+        .explore-button {
+            padding: 12px 24px;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 5px;
+            color: #000;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .explore-button:hover {
+            background-color: #ffdd44;
+        }
+
+        .section {
+            display: none;
+            padding: 40px 20px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        nav .logo img {
+            height: 50px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            margin: 0;
+            padding: 0 10px;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            transition: color 0.3s;
+            padding: 5px 10px;
+        }
+
+        nav ul li a:hover {
+            color: #ffcc00;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                background-color: rgba(0, 0, 0, 0.7);
+                padding: 10px;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                display: none;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 24px;
+                cursor: pointer;
+            }
+        }
+        .characters-section {
+    padding: 0; /* Remova ou reduza o padding */
+    margin-top: 0; /* Remova qualquer margem superior */
+    text-align: center;
+    
+}
+
+.characters-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #ffcc00;
+}
+
+.character-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.character-card {
+    background-color: #1f1f1f;
+    padding: 15px;
+    border-radius: 8px;
+    width: 200px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.character-card img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.character-card h3 {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.character-card p {
+    font-size: 0.9em;
+    color: #b3b3b3;
+}
+
+.character-card:hover {
+    transform: scale(1.05);
+}
+
+   
+.car-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .car-card {
+        width: 200px;
+        background-color: #1f1f1f;
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+    }
+
+    .car-card img {
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    .car-card h3 {
+        font-size: 1.2em;
+        margin: 10px 0;
+    }
+
+    .car-info {
+        display: none;
+        padding-top: 10px;
+        background: #333;
+        color: #f1f1f1;
+        border-radius: 8px;
+        margin-top: 10px;
+        text-align: left;
+    }
+
+    .car-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .car-card.expanded {
+        transform: scale(1.3);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .car-card.expanded .car-info {
+        display: block;
+    }
+
+    .fundo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('URL_DA_SUA_IMAGEM') center/cover no-repeat;
+    filter: blur(8px); /* Ajuste conforme desejado */
+    z-index: -1; /* Para garantir que esteja por trás do conteúdo */
+}
+
+.form-container {
+    position: relative;
+    background: rgba(0, 0, 0, 0.7); /* Ajuste a opacidade conforme desejado */
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+</style>
+
+
+
+
+<script>
+    function expandCard(card) {
+        // Se já estiver expandido, colapsa
+        if (card.classList.contains('expanded')) {
+            card.classList.remove('expanded');
+        } else {
+            // Fecha todos os cards antes de abrir o novo
+            document.querySelectorAll('.car-card').forEach(function(c) {
+                c.classList.remove('expanded');
+            });
+            // Expande o card clicado
+            card.classList.add('expanded');
+        }
+    }
+</script>
+   
+   </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="https://static.wikia.nocookie.net/eurobeat/images/6/61/Initial_D_logo.png/revision/latest?cb=20210820114029" alt="Logo Initial D">
+        </div>
+        <ul>
+            <li><a href="#inicio" onclick="showSection('inicio')">Início</a></li>
+            <li><a href="#temporada" onclick="showSection('temporada')">Temporada</a></li>
+            <li><a href="#personagens" onclick="showSection('personagens')">Personagens</a></li>
+            <li><a href="#curiosidades" onclick="showSection('curiosidades')">Curiosidades</a></li>
+            <li><a href="#galeria" onclick="showSection('galeria')">Galeria</a></li>
+            <li><a href="#formulario-inscricao" onclick="showSection('formulario-inscricao')">Inscreva-se</a></li>
+        </ul>
+    </nav>
+
+    <section id="curiosidades" class="section">
+        <div class="curiosidades-section" style="text-align: center; margin: 40px 0;">
+            <h2 style="color: #ffcc00; font-size: 2.5em; margin-bottom: 20px;">Curiosidades de Initial D</h2>
+            <p style="font-size: 1.2em; color: #f1f1f1; margin-bottom: 30px;">
+                Conheça fatos curiosos e bastidores sobre o mundo de Initial D que você talvez não saiba!
+            </p>
+            <div class="curiosidade-cards" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+                <!-- Card 1 -->
+                <div class="curiosidade-card" style="background-color: #1f1f1f; padding: 20px; border-radius: 8px; width: 280px; text-align: left; transition: transform 0.3s; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/AE86.jpg/800px-AE86.jpg" alt="AE86 Trueno" style="width: 100%; border-radius: 5px; margin-bottom: 10px;">
+                    <h3 style="color: #fff; font-size: 1.5em; margin-bottom: 10px;">O AE86 Realmente Virou Ícone</h3>
+                    <p style="color: #b3b3b3; font-size: 1em;">
+                        O Toyota AE86, carro de Takumi, tornou-se um ícone da cultura do drift no Japão e no mundo, em grande parte devido à série.
+                    </p>
+                </div>
+                <!-- Card 2 -->
+                <div class="curiosidade-card" style="background-color: #1f1f1f; padding: 20px; border-radius: 8px; width: 280px; text-align: left; transition: transform 0.3s; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+                    <img src="https://static.wikia.nocookie.net/initiald/images/7/77/Bunta-Fujiwara.jpg/revision/latest/scale-to-width-down/250?cb=20121227181817" alt="Bunta Fujiwara" style="width: 100%; border-radius: 5px; margin-bottom: 10px;">
+                    <h3 style="color: #fff; font-size: 1.5em; margin-bottom: 10px;">Bunta e Seu Passado Misterioso</h3>
+                    <p style="color: #b3b3b3; font-size: 1em;">
+                        Bunta Fujiwara, pai de Takumi, tem um passado misterioso nas corridas de rua e é considerado uma lenda.
+                    </p>
+                </div>
+                <!-- Card 3 -->
+                <div class="curiosidade-card" style="background-color: #1f1f1f; padding: 20px; border-radius: 8px; width: 280px; text-align: left; transition: transform 0.3s; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+                    <img src="https://perfectshift.com.au/cdn/shop/articles/Mt-Akina-at-night.jpg?v=1697684999" alt="Monte Akina" style="width: 100%; border-radius: 5px; margin-bottom: 10px;">
+                    <h3 style="color: #fff; font-size: 1.5em; margin-bottom: 10px;">Monte Akina Inspirado em Lugar Real</h3>
+                    <p style="color: #b3b3b3; font-size: 1em;">
+                        O Monte Akina, onde as corridas acontecem, foi inspirado na montanha Haruna, um local popular entre os fãs de drift no Japão.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="formulario-inscricao" class="section">
+        <div class="fundo"></div> <!-- Novo div para a imagem de fundo -->
+    <div class="form-container">
+        <div class="form-section" style="text-align: center; margin-top: 50px; color: #fff;">
+            <h2 style="color: #ffcc00; font-size: 2.5em; margin-bottom: 20px;">Formulário de Inscrição</h2>
+            <p style="font-size: 1.2em; margin-bottom: 30px;">Inscreva-se para receber as últimas novidades, participar de grupos de discussão e muito mais!</p>
+            <form style="max-width: 400px; margin: 0 auto; background-color: #1f1f1f; padding: 20px; border-radius: 8px;">
+                <div style="margin-bottom: 15px;">
+                    <label for="nome" style="display: block; margin-bottom: 5px;">Nome:</label>
+                    <input type="text" id="nome" name="nome" placeholder="Seu nome" required style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label for="email" style="display: block; margin-bottom: 5px;">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Seu email" required style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box;">
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label for="interesse" style="display: block; margin-bottom: 5px;">Área de Interesse:</label>
+                    <select id="interesse" name="interesse" required style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box;">
+                        <option value="">Selecione...</option>
+                        <option value="novidades">Novidades</option>
+                        <option value="discussao">Grupo de Discussão</option>
+                        <option value="ambos">Ambos</option>
+                    </select>
+                </div>
+                <button type="submit" style="background-color: #ffcc00; color: #000; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Inscrever-se</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="home-section" id="inicio">
+        <div class="background-image"></div>
+        <div class="hero-content">
+            <h1>Initial D</h1>
+            <p>Mergulhe no mundo das corridas de rua com Takumi e seu lendário AE86 enquanto desafia os limites em cada curva nas montanhas de Akina.</p>
+            <button class="explore-button" onclick="showSection('temporada')">Explorar Agora</button>
+        </div>
+    </div>
+
+    <section id="temporada" class="section">
+        <div class="season-intro" style="text-align: center; margin-top: 80px;">
+            <h2 style="color: #ffcc00; font-size: 2.8em; margin-bottom: 20px; font-weight: bold;">Initial D: First Stage - Introdução</h2>
+            <p style="font-size: 1.1em; color: #f1f1f1; max-width: 800px; margin: 0 auto 40px;">
+                Descubra como Takumi Fujwara, um jovem entregador de tofu, transforma-se em uma lenda do drift nas montanhas de Akina. Entre os desafios das corridas clandestinas e a pressão das corridas de downhill, cada episódio é uma jornada eletrizante que conquistou fãs ao redor do mundo.
+            </p>
+        </div>
+    
+        <div class="key-characters" style="text-align: center; margin-bottom: 60px;">
+            <h3 style="color: #ffcc00; font-size: 2.2em; margin-bottom: 20px; font-weight: bold;">Personagens Relevantes</h3>
+            <div class="character-cards" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+                <div class="character-card" style="background-color: #1f1f1f; padding: 20px; border-radius: 8px; width: 220px; text-align: center; transition: transform 0.3s;">
+                    <img src="https://static.wikia.nocookie.net/all-worlds-alliance/images/f/f2/Takumi_Render.png/revision/latest/scale-to-width-down/422?cb=20190521002436" alt="Takumi Fujwara" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h4 style="color: #fff; font-size: 1.4em; margin-bottom: 10px;">Takumi Fujwara</h4>
+                    <p style="color: #b3b3b3; font-size: 0.95em;">Jovem entregador de tofu que descobre suas habilidades no drift enquanto desafia pilotos experientes nas montanhas de Akina.</p>
+                </div>
+                <div class="character-card" style="background-color: #1f1f1f; padding: 20px; border-radius: 8px; width: 220px; text-align: center; transition: transform 0.3s;">
+                    <img src="https://static.wikia.nocookie.net/initiald/images/9/9b/Bunta_Fujiwara_AS0.png/revision/latest/scale-to-width-down/250?cb=20230502213220" alt="Bunta Fujwara" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                    <h4 style="color: #fff; font-size: 1.4em; margin-bottom: 10px;">Bunta Fujwara</h4>
+                    <p style="color: #b3b3b3; font-size: 0.95em;">Pai de Takumi e ex-piloto lendário de drift. Ele desempenha um papel fundamental no desenvolvimento das habilidades de Takumi.</p>
+                </div>
+                <!-- Adicione mais personagens aqui conforme necessário -->
+            </div>
+        </div>
+    
+        <div class="iconic-moments" style="text-align: center;">
+            <h3 style="color: #ffcc00; font-size: 2.2em; margin-bottom: 20px; font-weight: bold;">Momentos Icônicos</h3>
+            <div class="moment" style="margin-bottom: 30px;">
+                <img src="https://preview.redd.it/b2wbf9g6k6121.jpg?width=640&crop=smart&auto=webp&s=62ef8e1eca2ced54c6b4f8f23c6e26eb1418aae4" alt="Momento Icônico 1" style="max-width: 90%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+                <p style="color: #fff; margin-top: 15px; font-size: 1.1em; max-width: 600px; margin-left: auto; margin-right: auto;">Takumi derrota um dos melhores corredores de downhill em uma corrida épica sob chuva torrencial.</p>
+            </div>
+            <div class="moment">
+                <img src="https://www.drifted.com/wp-content/uploads/2021/04/initial-d-ae86-thumbnail.jpg" alt="Momento Icônico 2" style="max-width: 90%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+                <p style="color: #fff; margin-top: 15px; font-size: 1.1em; max-width: 600px; margin-left: auto; margin-right: auto;">O AE86 faz uma curva perfeita em uma das mais perigosas pistas de Akina, impressionando todos os espectadores.</p>
+            </div>
+            <!-- Adicione mais momentos aqui conforme necessário -->
+        </div>
+    </section>
+    
+
+
+    <section id="personagens" class="section"> 
+       
+       <div class="characters-section">
+        <h2>Personagens Principais</h2>
+        <div class="character-cards">
+            <div class="character-card">
+                <img src="https://static.wikia.nocookie.net/all-worlds-alliance/images/f/f2/Takumi_Render.png/revision/latest/scale-to-width-down/422?cb=20190521002436" alt="Takumi Fujiwara">
+                <h3>Takumi Fujiwara</h3>
+                <p>O jovem piloto do AE86, famoso por suas habilidades de drift e determinação.</p>
+            </div>
+
+            <div class="character-card">
+                <img src="https://www.pikpng.com/pngl/b/572-5727784_initial-d-png-initial-d-ryosuke-takahashi-png.png" alt="Ryosuke Takahashi">
+                <h3>Ryosuke Takahashi</h3>
+                <p>Estratégico e inteligente, Ryosuke é um dos melhores pilotos da região e líder dos Red Suns.</p>
+            </div>
+            <div class="character-card">
+                <img src="https://static.wikia.nocookie.net/initiald/images/a/a2/Keisuke_Takahashi_Legend.png/revision/latest/scale-to-width-down/250?cb=20191205225534" alt="Keisuke Takahashi">
+                <h3>Keisuke Takahashi</h3>
+                <p>O irmão mais novo de Ryosuke e um talentoso piloto de corrida que dirige um Mazda RX-7 amarelo.</p>
+            </div>
+            <div class="character-card">
+                <img src="https://static.wikia.nocookie.net/initiald/images/9/9b/Bunta_Fujiwara_AS0.png/revision/latest/scale-to-width-down/250?cb=20230502213220" alt="Bunta Fujiwara">
+                <h3>Bunta Fujiwara</h3>
+                <p>Pai de Takumi e ex-piloto lendário de drift, ele é uma figura influente no desenvolvimento de Takumi.</p>
+            </div>
+            <div class="character-card">
+                <img src="https://i.namu.wiki/i/RMQfJgfSQDoC08w7aVg68w1nxnMSdOnhKZ9SWJzDSM0OuzyFffirXzg5bFtdMsjro7i3vQkaD5X16VdgGdy0HQ.webp" alt="Itsuki Takeuchi">
+                <h3>Itsuki Takeuchi</h3>
+                <p>Melhor amigo de Takumi, seu entusiasmo pelas corridas às vezes o coloca em apuros.</p>
+            </div>
+            <div class="character-card">
+                <img src="https://i.namu.wiki/i/oYLhOCVkyEAyHmYvcLnCrR2Q9R-hsispCQmFCEM4bE1amuyXW-YX-Wt8bm4UGhV0JByuY6f2-pMWWCz0n6zX6w.webp" alt="Natsuki Mogi">
+                <h3>Natsuki Mogi</h3>
+                <p>Amiga de Takumi e interesse romântico, Natsuki tem um impacto significativo na vida pessoal de Takumi.</p>
+            </div>
+            <div class="character-card">
+                <img src="https://i.namu.wiki/i/t5FqjUNyds6mqyJS8hnVzXXjUoqniY2vEcVEx6eyuR33rEFSKwNhshjKN_LD7102Hu73_4X4uwMBE40f1emCmQ.webp" alt="Kenji">
+                <h3>Kenji</h3>
+                <p>Amigo de Takumi e membro do Speed Stars, ele apoia o grupo com sua experiência em corridas.</p>
+            </div>
+        </div>
+        </div>
+           
+        </div>
+    </div>
+
+
+
+    </section>
+    <section id="galeria" class="section">
+        <div class="gallery-section">
+            <h2>Galeria de Carros - Initial D</h2>
+            <div class="car-gallery">
+                <!-- AE86 - Trueno -->
+                <div class="car-card" onclick="expandCard(this)">
+                    <img src="https://i.pinimg.com/736x/62/07/49/620749201e9aec19505e6bfcebe8731c.jpg" alt="AE86">
+                    <h3>AE86 - Trueno</h3>
+                    <div class="car-info">
+                        <p><strong>Modelo:</strong> Toyota AE86 Sprinter Trueno</p>
+                        <p><strong>Desempenho:</strong> Motor 1.6L, 130hp</p>
+                        <p><strong>Função:</strong> Carro usado por Takumi Fujwara no famoso anime de corridas.</p>
+                    </div>
+                </div>
+    
+                <!-- Skyline GT-R R32 -->
+                <div class="car-card" onclick="expandCard(this)">
+                    <img src="https://static.wikia.nocookie.net/initiald/images/8/85/Nightkids_R32_manga.png/revision/latest/thumbnail/width/360/height/450?cb=20200628155945" alt="Nissan Skyline GT-R R32">
+                    <h3>Skyline GT-R R32</h3>
+                    <div class="car-info">
+                        <p><strong>Modelo:</strong> Nissan Skyline GT-R R32</p>
+                        <p><strong>Desempenho:</strong> Motor 2.6L, 280hp</p>
+                        <p><strong>Função:</strong> Rivais de Takumi, o carro foi uma lenda nas corridas de rua.</p>
+                    </div>
+                </div>
+    
+                <!-- Mazda RX-7 -->
+                <div class="car-card" onclick="expandCard(this)">
+                    <img src="https://static.wikia.nocookie.net/initiald/images/c/c5/Keisuke_Redsuns_Spec_I_Manga.png/revision/latest/scale-to-width/360?cb=20200608014525" alt="Mazda RX-7">
+                    <h3>Mazda RX-7</h3>
+                    <div class="car-info">
+                        <p><strong>Modelo:</strong> Mazda RX-7</p>
+                        <p><strong>Desempenho:</strong> Motor 1.3L Rotary, 255hp</p>
+                        <p><strong>Função:</strong> Utilizado por Keisuke Takahashi, um dos adversários mais fortes de Takumi.</p>
+                    </div>
+                </div>
+    
+                <!-- Nissan Silvia S13 -->
+                <div class="car-card" onclick="expandCard(this)">
+                    <img src="https://static.wikia.nocookie.net/initiald/images/d/d3/S13_Manga.png/revision/latest?cb=20210321025848" alt="Nissan Silvia S13">
+                    <h3>Nissan Silvia S13</h3>
+                    <div class="car-info">
+                        <p><strong>Modelo:</strong> Nissan Silvia S13</p>
+                        <p><strong>Desempenho:</strong> Motor 1.8L, 135hp</p>
+                        <p><strong>Função:</strong> Carro popular para drift, usado em várias corridas durante a série.</p>
+                    </div>
+                </div>
+    
+                <!-- Mitsubishi Lancer Evolution III -->
+                <div class="car-card" onclick="expandCard(this)">
+                    <img src="https://static.wikia.nocookie.net/initiald/images/7/7d/Emperor_Lan_Evo_III_Manga.png/revision/latest/scale-to-width-down/1200?cb=20200714153419" alt="Mitsubishi Lancer Evolution III">
+                    <h3>Lancer Evolution III</h3>
+                    <div class="car-info">
+                        <p><strong>Modelo:</strong> Mitsubishi Lancer Evolution III</p>
+                        <p><strong>Desempenho:</strong> Motor 2.0L Turbo, 280hp</p>
+                        <p><strong>Função:</strong> Carro da equipe Emperor, com um desempenho imbatível nas corridas de montanha.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+            if (sectionId !== 'inicio') {
+                document.querySelector('.home-section').style.display = 'none';
+            } else {
+                document.querySelector('.home-section').style.display = 'flex';
+            }
+        }
+
+        // Exibe a seção inicial ao carregar a página
+        showSection('inicio');
+    </script>
+</body>
+</html>
